@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hollywood", "Hollywood.vcxproj", "{A2BFC053-5DE8-4A95-945D-8EC563158E93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2BFC053-5DE8-4A95-945D-8EC563158E93}.Debug|x64.ActiveCfg = Debug|x64
+		{A2BFC053-5DE8-4A95-945D-8EC563158E93}.Debug|x64.Build.0 = Debug|x64
+		{A2BFC053-5DE8-4A95-945D-8EC563158E93}.Release|x64.ActiveCfg = Release|x64
+		{A2BFC053-5DE8-4A95-945D-8EC563158E93}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26EF0921-F97D-4082-A4B7-AEA0EDF22D18}
+	EndGlobalSection
+EndGlobal
