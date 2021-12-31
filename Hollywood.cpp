@@ -31,19 +31,8 @@ int main()
         std::getline(line_stream, title, ',');  // Movie Title
         movies.push_back(title);
     }
+
     input_file.close();
-
-    auto get_random_movie = [&line_count, &movies]()
-    {
-        std::random_device rand_device;                                             // Obtain a random number from hardware
-        std::mt19937 generator(rand_device());                                      // seed the generator
-        std::uniform_int_distribution<> dist(0, static_cast<int>(line_count) - 1);  // define the range
-
-        auto movie = movies[dist(generator)];
-        std::transform(movie.begin(), movie.end(), movie.begin(), std::toupper);
-        return movie;
-    };
-
     int holl_idx = 1;
     std::string movie, hollywood;
     std::vector<char> good_guesses, bad_guesses, allowed_chars;
