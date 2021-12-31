@@ -115,6 +115,9 @@ int main()
         std::cin >> input_char;
         input_char = std::toupper(input_char);
 
+        if (std::find(allowed_chars.begin(), allowed_chars.end(), input_char) != allowed_chars.end())
+            continue;
+
         if (movie.find(input_char) != std::string::npos)
         {
             if (std::find(good_guesses.begin(), good_guesses.end(), input_char) != good_guesses.end())
