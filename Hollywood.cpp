@@ -65,11 +65,13 @@ int main()
         std::transform(movie.begin(), movie.end(), movie.begin(), std::toupper);
     };
 
-    reset_game();
+    reset_game();   // Initialize
+    int wins = 0, losses = 0;
+
     do
     {
         system("cls");
-        std::cout << "\t\t\t" << hollywood << "\n\n\t\t";
+        std::cout << "\t\t\t" << hollywood << "\t\tW: " << wins << " L: " << losses << "\n\n\t\t";
 
         if (!good_guesses.empty())
         {
@@ -102,6 +104,7 @@ int main()
 
         if (dash_count == 0)
         {
+            wins++;
             std::cout << "\n\n\t\tSUCCESS!!!\n\nDo you wish to play again? (Y/N) ";
             char input_char;
             std::cin >> input_char;
@@ -134,6 +137,7 @@ int main()
 
             if (holl_idx == 9)
             {
+                losses++;
                 std::cout << "\n\nMovie was: " << movie << "\n\n\t\tGAME OVER!!\n\nDo you wish to play again? (Y/N) ";
                 char input_char;
                 std::cin >> input_char;
