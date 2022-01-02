@@ -1,4 +1,4 @@
-# Hollywood - The Game
+# Hollywood - The Game (Windows only)
 In this tantalizing rendition of a classic kids game, one is presented with a randomly selected movie title (from a list of 1000 IMDB movies) with its consonants stripped. A few allowed characters (vowels, numbers, symbols) are displayed whereas the stripped consonants are represented with an underscore '`_`'.
 
 ![image](https://user-images.githubusercontent.com/22571164/147840336-6e264b36-6537-461f-ab17-673a71fd196a.png)
