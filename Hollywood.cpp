@@ -7,6 +7,7 @@
 #include <random>
 #include <sstream>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 int main()
@@ -36,8 +37,9 @@ int main()
     int holl_idx = 1;
     std::string movie, hollywood;
     std::vector<char> good_guesses, bad_guesses, allowed_chars;
+    std::unordered_set<std::string> movie_prompts;
 
-    auto reset_game = [&holl_idx, &movie, &hollywood, &good_guesses, &bad_guesses, &allowed_chars, &line_count, &movies]()
+    auto reset_game = [&holl_idx, &movie, &hollywood, &good_guesses, &bad_guesses, &allowed_chars, &line_count, &movies, &movie_prompts]()
     {
         holl_idx = 1;
         hollywood = "HOLLYWOOD";
@@ -46,12 +48,17 @@ int main()
         allowed_chars = { 'A', 'E', 'I', 'O', 'U', ' ', '-', '?', ':', '\'', '.', ',', '!',
                           '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', '/' };
 
-        std::random_device rand_device;                                             // Obtain a random number from hardware
-        std::mt19937 generator(rand_device());                                      // seed the generator
-        std::uniform_int_distribution<> dist(0, static_cast<int>(line_count) - 1);  // define the range
+        do
+        {
+            std::random_device rand_device;                                             // Obtain a random number from hardware
+            std::mt19937 generator(rand_device());                                      // seed the generator
+            std::uniform_int_distribution<> dist(0, static_cast<int>(line_count) - 1);  // define the range
+            movie = movies[dist(generator)];
+        } while (!movie_prompts.insert(movie).second);
 
-        movie = movies[dist(generator)];
         std::transform(movie.begin(), movie.end(), movie.begin(), std::toupper);
+        if (movie_prompts.size() == movies.size())
+            movie_prompts.clear();
     };
 
     reset_game();   // Initialize
