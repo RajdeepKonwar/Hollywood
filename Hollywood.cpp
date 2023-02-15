@@ -1,3 +1,5 @@
+﻿#include "MoviesDatabase.h"
+
 #include <algorithm>
 #include <cctype>
 #include <cstdio>
@@ -12,34 +14,12 @@
 
 int main()
 {
-    std::ifstream input_file("IMDB-Movie-Data.csv");
-    auto line_count = std::count(std::istreambuf_iterator<char>(input_file),
-                                 std::istreambuf_iterator<char>(), '\n');
-    input_file.seekg(0, std::ios::beg); // Seek begining of file
-
-    std::vector<std::string> movies;
-    movies.reserve(line_count);
-
-    std::string line;
-    std::getline(input_file, line);     // Ignore first line
-
-    while (std::getline(input_file, line))
-    {
-        std::stringstream line_stream(line);
-        std::string title;
-        std::getline(line_stream, title, ',');  // Ignore index
-
-        std::getline(line_stream, title, ',');  // Movie Title
-        movies.push_back(title);
-    }
-
-    input_file.close();
     int holl_idx = 1;
     std::string movie, hollywood;
     std::vector<char> good_guesses, bad_guesses, allowed_chars;
     std::unordered_set<std::string> movie_prompts;
 
-    auto reset_game = [&holl_idx, &movie, &hollywood, &good_guesses, &bad_guesses, &allowed_chars, &line_count, &movies, &movie_prompts]()
+    auto reset_game = [&holl_idx, &movie, &hollywood, &good_guesses, &bad_guesses, &allowed_chars, &movie_prompts]()
     {
         holl_idx = 1;
         hollywood = "HOLLYWOOD";
@@ -50,14 +30,14 @@ int main()
 
         do
         {
-            std::random_device rand_device;                                             // Obtain a random number from hardware
-            std::mt19937 generator(rand_device());                                      // seed the generator
-            std::uniform_int_distribution<> dist(0, static_cast<int>(line_count) - 1);  // define the range
-            movie = movies[dist(generator)];
+            std::random_device rand_device;                                                 // Obtain a random number from hardware
+            std::mt19937 generator(rand_device());                                          // seed the generator
+            std::uniform_int_distribution<> dist(0, static_cast<int>(k_Movies.size()) - 1); // define the range
+            movie = k_Movies[dist(generator)];
         } while (!movie_prompts.insert(movie).second);
 
         std::transform(movie.begin(), movie.end(), movie.begin(), std::toupper);
-        if (movie_prompts.size() == movies.size())
+        if (movie_prompts.size() == k_Movies.size())
             movie_prompts.clear();
     };
 
